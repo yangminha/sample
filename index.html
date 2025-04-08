@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>반복문!!!</title>
+    <style>
+        body { margin:0px; }
+        .box {
+            position:absolute;
+            background-color:rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<script>
+let texts = "";
+
+for (let i=0; i<50; i++) {
+    let x = i*1;
+    let y = i*1;
+    let w = 100-i*2;
+    let h = 100-i*2;
+    let deg = i*2.75;
+    texts += `<div class='box' 
+            style='left:${x}vw; top:${y}vh; 
+            width:${w}vw; height:${h}vh;
+            transform:rotate(${deg}deg);
+            '></div>`;
+}
+
+document.write(texts);
+
+let mousex = 0, mousey = 0;
+document.addEventListener("mousemove", (e)=>{
+    mousex = e.clientX;
+    mousey = e.clientY;
+});
+function changeAngle () {
+    let boxes = document.querySelectorAll(".box");
+    let i = 0;
+    boxes.forEach((_box)=> {
+        let deg = i*(mousex*0.03);
+        _box.style.transform = `rotate(${deg}deg)`
+            i++;
+    });
+
+}
+
+setInterval(changeAngle, 20);
+
+</script>
+
+</body>
+</html>
+

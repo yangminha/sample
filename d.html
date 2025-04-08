@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>하품</title>
+    <style>
+        body { margin:0px; }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap');
+        #outer {
+            display:grid;
+            width:100vw;
+            height:100vh;
+            grid-template-columns: auto;
+            grid-template-rows: auto;
+        }
+        .inner {
+            font-family: "Noto Serif KR", Helvetica, sans-serif;
+            text-align:center;
+            font-size:100%;
+            border:1px solid #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+    <script>
+        let str = "";
+        for (let i=0; i<400; i++) {
+            str += "<div class='inner'>A</div>";
+        }
+        document.write(str);
+        let outer = document.getElementById("outer");
+        let newttw = "";
+        let newtth = "";
+        for (let i=0; i<20; i++) {
+            newttw += "5vw ";
+            newtth += "5vh ";
+        }
+        outer.style.gridTemplateColumns = newttw;
+        outer.style.gridTemplateRows = newtth;
+        let innerDiv = document.getElementsByClassName("inner");
+
+        let mX = 0, mY = 0;
+        document.addEventListener("mousemove", (e)=> {mX = e.pageX; mY=e.pageY;});
+
+        function hohohohahaha () {
+            for (let i=0; i<innerDiv.length; i++) {
+                let x = parseInt(innerDiv[i].offsetLeft);
+                let y = parseInt(innerDiv[i].offsetTop);
+                let d = Math.sqrt((mX - x)*(mX - x) + (mY - y)*(mY - y));
+                if (d<300) {
+                    d = (300-d) * 0.2;
+                } else d = 0;
+
+                d = d + 5;
+                let w = 200 + d*10;
+                
+                innerDiv[i].style.fontSize = d + "pt";
+                innerDiv[i].style.fontWeight = w;
+                
+
+                
+                //console.log(innerDiv[i].offsetLeft); // innerDiv[i].offsetLeft innerDiv[i].offsetTop
+            }
+            
+        }
+        setInterval(hohohohahaha, 20);
+    </script>
+    </div>
+</body>
+</html>
+
